@@ -1,0 +1,19 @@
+$reddish : #3b2424;
+$graysh : #918787;
+$cardbg : rgba(201, 201, 201, 0.95);
+$hswred : rgba(177, 37, 37, 0.8);
+$textlight : #cac2c2;
+
+$theme-colors: (primary: $graysh,
+    secondary: #313131,
+    info: $graysh,
+    text-secondary: #cecece,
+    text-primary: #cecece,
+);
+
+$enable-rounded: false;
+$grid-gutter-width : 20px;
+
+$container-max-widths: (md: 720px,
+    lg: 960px,
+    xl: 1400px) !default;

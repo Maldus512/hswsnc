@@ -1,0 +1,100 @@
+@import "base";
+
+img.logo {
+    height: 90px;
+    margin-bottom: 12px;
+
+    @media screen and (max-width: 720px) {
+        height: 60px;
+    }
+}
+
+.navbar {
+    //background: -moz-linear-gradient(top,  white 0%, red 8%, #0e0e0e 100%); /* FF3.6+ */
+    //background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(8%,#46ddc9), color-stop(100%,#0e0e0e)); /* Chrome,Safari4+ */
+    //background: -webkit-linear-gradient(top,  #7d7e7d 0%,#46ddc9 8%,#0e0e0e 100%); /* Chrome10+,Safari5.1+ */
+    //background: -o-linear-gradient(top,  #7d7e7d 0%,#46ddc9 8%,#0e0e0e 100%); /* Opera 11.10+ */
+    //background: -ms-linear-gradient(top,  #7d7e7d 0%,#46ddc9 8%,#0e0e0e 100%); /* IE10+ */
+    background: linear-gradient(175deg, $graysh 25%, #3f3939 60%, $reddish 100%); //#333232 100%); /* W3C */
+    //background: linear-gradient(to right, $graysh 250px, #534b4b 300px, $reddish 100%); //#333232 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7d7e7d', endColorstr='#0e0e0e', GradientType=0);
+    /* IE6-9 */
+    border-color: black !important;
+    z-index: 9999;
+}
+
+#navbar,
+img.logo,
+.nav-link {
+    transition: 0.5s;
+}
+
+#navbar {
+    padding: 4px 10px;
+}
+
+#brand {
+    font-size: 10px;
+    padding: 0px;
+}
+
+.navbar-nav {
+    float: none;
+    //margin: 0 auto;
+    margin-right: 0px !important;
+    margin-left: 40% !important;
+    display: block;
+    text-align: center;
+}
+
+.navbar-nav>li {
+    display: inline-block;
+    float: none;
+}
+
+nav {
+    .navbar-brand {
+        font-size: 56px;
+    }
+
+
+    .nav-item {
+        margin-left: 32px !important;
+        margin-right: 32px !important;
+    }
+
+
+    .navbar-collapse {
+        align-self: flex-end;
+    }
+
+}
+
+.nav-link {
+    padding: 0px;
+    font-size: 30px;
+    font-weight: bold;
+    font-variant: small-caps;
+    box-sizing: border-box;
+}
+
+.nav-link:after {
+    content: '';
+    display: block;
+    border-bottom: 4px solid $textlight;
+    width: 0;
+    //position: absolute;
+    //right: 0;
+    -webkit-transition: 0s ease;
+    transition: 0s ease;
+}
+
+.selected-nav-item {
+    color : $textlight !important;
+}
+  
+.selected-nav-item:after { 
+    width: 100%; 
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+}

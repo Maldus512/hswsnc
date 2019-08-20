@@ -1,0 +1,11 @@
+.vscode
+.sconsign.dblite
+.sass-cache
+cgi-bin/emailrequest.py
+node_modules
+# elm-package generated files
+elm-stuff
+# elm-repl generated files
+repl-temp-*
+compiled.css
+elm.js

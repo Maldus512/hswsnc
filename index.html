@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>HSW - Hardware & Software Design and Development</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Azienda che offre servizi di progettazione e sviluppo per soluzioni fortemente personalizzate.">
+    <meta name="keywords" content="Hardware,Software,Custom design,Custom solution">
+    <meta name="author" content="Mattia Maldini">
+    <link rel="preload" href="res/images/redpcb.jpg" as="image">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="HSW">
+    <meta property="og:url" content="www.hswsnc.com">
+    <meta property="og:description" content="Azienda che offre servizi di progettazione e sviluppo per soluzioni fortemente personalizzate">
+    <meta property="og:title" content="HSW - Hardware & Software Design and Development">
+    <meta property="og:image" content="www.hswsnc.com/res/images/hsw.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="compiled.css" />
+    <script src="elm.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+    <script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "url": "http://www.hswsnc.com",
+        "logo": "http://www.hswsnc.com/res/images/hsw.png",
+         }
+        </script>
+</head>
+
+<body>
+    <script>
+        var app = Elm.Main.init()
+        window.onscroll = function () { scrollFunction() };
+        document.getElementById("back2top").onclick = function () {
+            $("html, body").animate({ scrollTop: 0 }, 400);
+            return false;
+        }
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 85 || document.documentElement.scrollTop > 85) {
+                document.getElementById("logo").style.marginBottom = "2px";
+                elements = document.getElementsByClassName("nav-link");
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].style.fontSize = "20px";
+                }
+                document.getElementById("logo").style.height = "45px";
+                document.getElementById("back2top").style.display = "block";
+            } else {
+                document.getElementById("logo").style.marginBottom = "12px";
+                elements = document.getElementsByClassName("nav-link");
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].style.fontSize = "30px";
+                }
+                if (window.matchMedia("(max-width: 480px)").matches) {
+                    document.getElementById("logo").style.height = "60px";
+                } else {
+                    document.getElementById("logo").style.height = "90px";
+                }
+                document.getElementById("back2top").style.display = "none";
+            }
+        }
+
+        function scrollTo(element, to, duration) {
+            console.log(element.scrollTop);
+            if (duration <= 0) return;
+            var difference = to - element.scrollTop;
+            var perTick = difference / duration * 10;
+
+            setTimeout(function () {
+                element.scrollTop = element.scrollTop + perTick;
+                if (element.scrollTop === to) return;
+                scrollTo(element, to, duration - 10);
+            }, 10);
+        }
+
+    </script>
+    <h1 style="display : none; width : 0; height : 0;" id="seotitle">HSW - Hardware & Software Design and Development</h1>
+    <h2 style="display : none; width : 0; height : 0;" id="seotitle">Bringing custom design ideas to life</h1>
+</body>
+
+</html>

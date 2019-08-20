@@ -1,0 +1,18 @@
+@import "base";
+
+footer {
+    padding: 20px 50px;
+    background-color: lightgray;
+    border-width: 2px;
+    position: relative;
+    box-shadow: 0 50vh 0 50vh lightgray;
+    font-size : initial !important;
+}
+
+#poweredby {
+    font-size: 12px;
+    text-align: right;
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+}
