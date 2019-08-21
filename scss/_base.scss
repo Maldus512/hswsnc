@@ -1,12 +1,20 @@
-$reddish : #3b2424;
+$reddish : #4d3636;
+$headerdark : #301b1b;
+$headerlight : #bebcbc;
+$headergradient : #3f3939;
 $graysh : #918787;
-$cardbg : rgba(201, 201, 201, 0.95);
+$lightgraysh : #ccc3c3;
+$graybg : #725f5f;
+$cardbg : rgba(179, 177, 177, 0.95);
+$cardbgnoa : rgba(201, 201, 201, 1);
 $hswred : rgba(177, 37, 37, 0.8);
 $textlight : #cac2c2;
 
+$bgimageend : 700px;
+
 $theme-colors: (primary: $graysh,
     secondary: #313131,
-    info: $graysh,
+    info: $graybg,
     text-secondary: #cecece,
     text-primary: #cecece,
 );

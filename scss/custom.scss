@@ -11,11 +11,19 @@ html {
 }
 
 
+.bodybg {
+    background : linear-gradient(to bottom, $reddish 1000px, $lightgraysh 100%, lightgrey 100%);
+}
+
 body {
-    padding-top: 40px;
+    padding-top: 100px;
+    @media screen and (max-width : 720px) {
+        padding-top: 60px;
+    }
+    background-color: $reddish;
 }
 h1 {
-    font-size : 32px;
+    font-size : 36px;
     font-weight: 400;
 
     @media screen and (max-width : 720px) {

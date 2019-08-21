@@ -6,7 +6,7 @@
 
 .card {
     border-width: 0px;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
     background-color: $cardbg;
     overflow: hidden;
 
@@ -17,13 +17,10 @@
     }
 }
 
-.maincard {
+.maincard,
+.topcard {
     margin-bottom: 60px;
     border-width: 0px;
-    height: 500px;
-        @media screen and (max-width: 960px) {
-            height: auto;
-        }
 
     .card-body {
         display: flex;
@@ -35,6 +32,14 @@
     }
 }
 
+.maincard {
+    height: 500px;
+
+    @media screen and (max-width: 960px) {
+        height: auto;
+    }
+}
+
 #maincontentimage {
     align-self: start;
     min-width: 500px;
@@ -43,23 +48,25 @@
 .maincardtext {
     margin-left: 40px;
     margin-right: 40px;
+    align-self: center;
 }
 
 
 .bg {
-    padding-top: 120px;
+    padding-top: 60px;
     padding-bottom: 10px;
     /* The image used */
-    background-image: url("res/images/redpcb.jpg");
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, transparent $bgimageend, $reddish 99%), url("res/images/redpcb.jpg");
 
     @media screen and (max-width : 960px) {
         padding-top: 80px;
-        background-image: url("res/images/redpcbmd.jpg");
+        background-image: linear-gradient(to bottom, transparent $bgimageend, $reddish 99%), url("res/images/redpcbmd.jpg");
     }
 
     @media screen and (max-width : 480px) {
         padding-top: 60px;
-        background-image: url("res/images/redpcbsm.jpg");
+        background-image: linear-gradient(to bottom, transparent $bgimageend, $reddish 99%), url("res/images/redpcbsm.jpg");
     }
 
     //opacity: 0.9;
@@ -68,9 +75,9 @@
     min-height: 700px;
 
     /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: repeat-y;
-    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: 100% 1000px;
 }
 
 
@@ -84,8 +91,9 @@
 }
 
 .fadeleft {
-    background: linear-gradient(to left, $cardbg 90%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(to left, $cardbg 85%, rgba(255, 255, 255, 0) 100%);
     padding-left: 60px;
+    border-right-width: 10px;
 
     blockquote {
         text-align: right;
@@ -93,8 +101,9 @@
 }
 
 .faderight {
-    background: linear-gradient(to right, $cardbg 90%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(to right, $cardbg 85%, rgba(255, 255, 255, 0) 100%);
     padding-right: 60px;
+    border-left-width: 10px;
 
     blockquote {
         text-align: left;
@@ -102,9 +111,12 @@
 }
 
 .carousel {
-    //max-height: 600px;
     background-color: $cardbg;
     padding-bottom: 20px;
+
+    @media screen and (max-width : 720px) {
+        height: 450px;
+    }
 }
 
 .myslidecontent {
@@ -279,5 +291,20 @@ textarea {
 
     100% {
         transform: rotate(360deg);
+    }
+}
+
+#elmrustcard {
+    @media screen and (min-width : 960px) {
+        max-height: 220px;
+    }
+}
+
+#elmrust {
+    height: 200px;
+    max-height: 70%;
+    @media screen and (min-width : 960px) {
+        float: left;
+        margin: 15px;
     }
 }

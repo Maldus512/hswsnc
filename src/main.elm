@@ -9,6 +9,7 @@ import Bootstrap.Grid as Grid
 import Bootstrap.Grid.Col
 import Bootstrap.Navbar as Navbar
 import Browser
+import Browser.Dom as Dom
 import Browser.Navigation as Navigation
 import Css exposing (..)
 import Debug
@@ -19,6 +20,7 @@ import Html.Events exposing (onClick)
 import Html.Styled.Attributes exposing (css)
 import Http
 import Model exposing (..)
+import Task exposing (Task)
 import Tuple exposing (first)
 import Url exposing (Url)
 import Url.Parser as UrlParser exposing ((</>), Parser, s, top)
@@ -60,6 +62,11 @@ init flags url key =
 -- Update
 
 
+resetViewport : Cmd Msg
+resetViewport =
+    Task.perform (\_ -> NoOp) (Dom.setViewport 0 0)
+
+
 urlUpdate : Url -> Model -> ( Model, Cmd Msg )
 urlUpdate url model =
     case decode url of
@@ -71,7 +78,7 @@ urlUpdate url model =
                 x =
                     Debug.log "route" route
             in
-            ( { model | page = route }, Cmd.none )
+            ( { model | page = route }, resetViewport )
 
 
 decode : Url -> Maybe Page
@@ -91,7 +98,8 @@ routeParser =
 
 
 type Msg
-    = NavMsg Navbar.State
+    = NoOp
+    | NavMsg Navbar.State
     | LinkClicked Browser.UrlRequest
     | UrlChanged Url.Url
     | CarouselMsg Carousel.Msg
@@ -106,22 +114,26 @@ type Msg
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case Debug.log "msg" msg of
+        NoOp ->
+            ( model, Cmd.none )
+
         NavMsg state ->
             ( { model | navState = state }, Cmd.none )
 
         SubmitEmail ->
             case validate validator model of
                 Ok _ ->
-                    ( { model | errors = [], emailRequestResult = Just Progress}, emailPostRequest model EmailResult )
+                    ( { model | errors = [], emailRequestResult = Just Progress }, emailPostRequest model EmailResult )
 
                 -- Run HTTP request
                 Err errors ->
                     ( { model | errors = errors }, Cmd.none )
 
         EmailResult (Ok _) ->
-            ( {model | emailRequestResult = Just Success}, Cmd.none )
+            ( { model | emailRequestResult = Just Success }, Cmd.none )
+
         EmailResult (Err _) ->
-            ( {model | emailRequestResult = Just Failure}, Cmd.none )
+            ( { model | emailRequestResult = Just Failure }, Cmd.none )
 
         SetName name ->
             ( { model | name = name }, Cmd.none )
@@ -216,7 +228,7 @@ locationCard =
                 [ div [ class "maincardtext" ]
                     [ h1 [] [ text "Dove siamo" ]
                     , p [] [ text """La nostra sede produttiva si trova nella zona industriale di Zola Predosa, 
-                                    presso il complesso di via Roma 57.""" ]
+                                    presso il complesso dell'area 57. L'indirizzo completo è Via Roma 57/G, Zola Predosa (BO)""" ]
                     ]
                 ]
             ]
@@ -224,7 +236,7 @@ locationCard =
 
 
 mainCard =
-    Card.config [ Card.outlineInfo, Card.attrs [ class "maincard" ] ]
+    Card.config [ Card.outlineInfo, Card.attrs [ class "topcard" ] ]
         |> Card.block []
             [ Block.custom
                 (div [ class "maincardtext" ]
@@ -282,6 +294,19 @@ secondaryCard =
                     |> Card.view
                 ]
             ]
+        , Grid.row []
+            [ Grid.col [ Bootstrap.Grid.Col.md8 ]
+                [ Card.config [ Card.outlineInfo, Card.attrs [ class "faderight" ] ]
+                    |> Card.block [ Block.attrs [ id "elmrustcard" ] ]
+                        [ Block.custom (img [ id "elmrust", src "res/images/elmrust.png" ] [])
+                        , Block.titleH1 [] [ text "Innovazione e Avanguardia" ]
+                        , Block.quote []
+                            [ text "Siamo costantemente spinti alla ricerca di nuove tecnologie e paradigmi da applicare nei nostri prodotti"
+                            ]
+                        ]
+                    |> Card.view
+                ]
+            ]
         ]
 
 
@@ -303,13 +328,7 @@ emailForm model =
                         , input
                             [ type_ "text"
                             , placeholder "Nome"
-                            , class
-                                (if isFormError Name model.errors then
-                                    "errorinput"
-
-                                 else
-                                    ""
-                                )
+                            , classFormError Name model.errors
                             , name "name"
                             , Html.Events.onInput SetName
                             ]
@@ -320,13 +339,7 @@ emailForm model =
                         , input
                             [ type_ "email"
                             , placeholder "Email a cui risponderemo"
-                            , (if isFormError Name model.errors then
-                                "errorinput"
-
-                               else
-                                ""
-                              )
-                                |> class
+                            , classFormError Name model.errors
                             , name "mail"
                             , Html.Events.onInput SetEmail
                             ]
@@ -335,13 +348,7 @@ emailForm model =
                     , p []
                         [ textarea
                             [ placeholder "Scrivi il tuo messaggio"
-                            , class
-                                (if isFormError Content model.errors then
-                                    "errorinput"
-
-                                 else
-                                    ""
-                                )
+                            , classFormError Content model.errors
                             , name "content"
                             , Html.Events.onInput SetContent
                             ]
@@ -393,17 +400,22 @@ mutedlink ( string, link ) =
 pageFooter =
     footer [ class "page-footer border-top border-primary" ]
         [ Grid.row []
-            [ Grid.col [ Bootstrap.Grid.Col.md8 ]
+            [ Grid.col [ Bootstrap.Grid.Col.md5 ]
                 [ img [ src "res/images/hsw.png", Html.Attributes.height 25 ] []
                 , Html.small [ class "text-muted d-block" ] [ text "© 2017-2018" ]
                 ]
-            , Grid.col [ Bootstrap.Grid.Col.md1 ]
-                [ h5 [] [ text "Prodotti" ]
+            , Grid.col [ Bootstrap.Grid.Col.md2 ]
+                [ h6 [] [ text "Network" ]
+                , Html.ul [ class "list-unstyled" ]
+                    (List.map mutedlink [ ( "Linkedin", "https://www.linkedin.com/company/hsw/about/" ), ( "Github", "https://github.com/maldus512" ), ( "Medium", "https://medium.com/@mattia512maldini" ) ])
+                ]
+            , Grid.col [ Bootstrap.Grid.Col.md2 ]
+                [ h6 [] [ text "Prodotti" ]
                 , Html.ul [ class "list-unstyled" ]
                     (List.map mutedlink [ ( "Lavanderia", "#" ), ( "Lavasecco", "#" ), ( "Stiro", "#" ), ( "Agricoltura", "#" ), ( "Lavorazione Pelli", "#" ) ])
                 ]
             , Grid.col [ Bootstrap.Grid.Col.md3 ]
-                [ h5 [] [ text "Contatti" ]
+                [ h6 [] [ text "Contatti" ]
                 , Html.ul [ class "list-unstyled" ]
                     (List.map mutedlink
                         [ ( "Sede legale : Via del Francia 14, Casalecchio (BO)"
@@ -411,12 +423,13 @@ pageFooter =
                           )
                         , ( "Sede produttiva : Via Roma 57/g, Zola Predosa (BO)", "https://www.google.it/maps/place/Via+Roma,+57,+40069+Zona+Industriale+BO/@44.4938389,11.2334336,17z/data=!3m1!4b1!4m5!3m4!1s0x477fd6e56b98afcb:0xc3c03558fe15590f!8m2!3d44.4938389!4d11.2356276" )
                         , ( "Email : info@hswsnc.com", "mailto:info@hswsnc.com" )
-                        , ( "P.IVA :", "#" )
+                        , ( "Tel : (+39) 051 619 619 1", "tel:0039-051-619-6191" )
+                        , ( "P.IVA : BO 01688021201", "#" )
                         ]
                     )
                 ]
             ]
-        , Html.a [ id "poweredby", href "https://elm-lang.org/", class "text-muted" ] [ text "Powered by Elm" ]
+        , Html.a [ id "poweredby", href "https://elm-lang.org/", class "text-muted" ] [ span [] [ text "Powered by Elm", img [ src "res/images/elm.png", style "height" "14px", style "margin-left" "5px" ] [] ] ]
         ]
 
 
@@ -427,22 +440,24 @@ view model =
         [ div [ id "top" ] []
         , menu model
         , button [ id "back2top", class "icon-chevron-up" ] []
-        , div [ class "bg" ]
-            [ case model.page of
-                Home ->
-                    mainContent
+        , div [ class "bodybg" ]
+            [ div [ class "bg" ]
+                [ case model.page of
+                    Home ->
+                        mainContent
 
-                Contatti ->
-                    emailForm model
+                    Contatti ->
+                        emailForm model
 
-                Presentazioni ->
-                    locationCard
+                    Presentazioni ->
+                        locationCard
 
-                Prodotti ->
-                    productContent model
+                    Prodotti ->
+                        productContent model
 
-                NotFound ->
-                    Grid.container [] []
+                    NotFound ->
+                        Grid.container [] []
+                ]
             ]
         , pageFooter
         ]
