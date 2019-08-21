@@ -21,10 +21,32 @@
 .topcard {
     margin-bottom: 60px;
     border-width: 0px;
+    border-width: 10px 0px 0px 0px;
+    border-style: solid;
+    border-color: $graybg;
+    max-height: 500px;
+
+    h1 {
+        font-variant: small-caps;
+        font-weight: bold;
+        font-size: 42px;
+        margin-bottom: 20px;
+
+        @media screen and (max-width : 720px) {
+            font-size: 32px;
+        margin-top: 20px;
+
+        }
+    }
+
+    @media screen and (max-width : 960px) {
+        max-height: 100%;
+    }
 
     .card-body {
         display: flex;
         justify-content: center;
+        padding: 0px;
 
         @media screen and (max-width: 960px) {
             display: initial;
@@ -40,10 +62,6 @@
     }
 }
 
-#maincontentimage {
-    align-self: start;
-    min-width: 500px;
-}
 
 .maincardtext {
     margin-left: 40px;
@@ -80,7 +98,54 @@
     background-size: 100% 1000px;
 }
 
+.right {
+    float: right;
+}
 
+.left {
+    float: left;
+}
+
+.maincontentimage {
+    position: relative;
+    height: 100%;
+    max-width: 25%;
+}
+
+.headermd {
+    display: initial;
+}
+
+.headersm {
+    margin-bottom: 10px;
+    height: 300px;
+    display: none;
+}
+
+@media screen and (max-width : 960px) {
+    .headermd {
+        display: none;
+    }
+
+    /*.headersm {
+       //display: initial;
+        //overflow: auto;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+        align-content: space-between;
+    }
+
+    div.maincontentimage {
+        flex : 1;
+    }
+    img.maincontentimage {
+        flex: 4;
+        max-height: 300px;
+        max-width: 45%;
+        height: 100%;
+    }*/
+}
 
 
 .maincontainer {
@@ -115,7 +180,7 @@
     padding-bottom: 20px;
 
     @media screen and (max-width : 720px) {
-        height: 450px;
+        height: 500px;
     }
 }
 
@@ -135,7 +200,7 @@
         max-height: 400px;
         max-width: 80%;
 
-        @media screen and (max-width : 480px) {
+        @media screen and (max-width : 720px) {
             display: block;
             margin: auto;
             max-height: 200px
@@ -156,6 +221,8 @@ input[type=submit],
     z-index: 99;
     color: white;
     background-color: $hswred;
+    font-weight: bold;
+    font-variant: small-caps;
     border: none;
     outline: none;
     border-radius: 15px;
@@ -183,6 +250,10 @@ input[type=submit],
 .errorinput::placeholder {
     font-weight: bold;
     color: red;
+}
+
+.formcard {
+    padding : 20px;
 }
 
 form {
@@ -303,6 +374,7 @@ textarea {
 #elmrust {
     height: 200px;
     max-height: 70%;
+
     @media screen and (min-width : 960px) {
         float: left;
         margin: 15px;

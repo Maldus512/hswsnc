@@ -239,26 +239,37 @@ mainCard =
     Card.config [ Card.outlineInfo, Card.attrs [ class "topcard" ] ]
         |> Card.block []
             [ Block.custom
-                (div [ class "maincardtext" ]
-                    [ h1 [] [ text "Hardware e Software" ]
-                    , div []
-                        [ p [] [ text """HSW snc è un'azienda nata a Bologna con lo 
+                (div []
+                    [ div [ class "headersm" ]
+                        [ img [ class "maincontentimage left", src "res/images/software.png" ] []
+                        , div [ class "maincontentimage" ] []
+                        , img [ class "maincontentimage right", src "res/images/hardware.png" ] []
+                        ]
+                    , img [ class "maincontentimage headermd left", src "res/images/software.png" ] []
+                    , img [ class "maincontentimage headermd right", src "res/images/hardware.png" ] []
+                    , div [ style "display" "flex", style "height" "100%" ]
+                        [ div [ class "maincardtext" ]
+                            [ 
+                                h1 [] [ text "Hardware e Software" ]
+                            , div []
+                                [ p [] [ text """HSW snc è un'azienda nata a Bologna con lo 
                                     scopo di realizzare soluzioni elettroniche 
                                     in tutti i campi dove queste fossero richieste.
                                     Nel corso degli anni si è specializzata in 
                                     applicazioni per il controllo industriale 
                                     di vario tipo tra cui lavanderia, stiro, macchine agricole,
                                     sensoristica avanzata.""" ]
-                        , p [] [ text """
+                                , p [] [ text """
                                     Grazie all'esperienza che vanta in molteplici ambiti
                                     HSW può fornire una consulenza specialistica e 
                                     approfondita nel superamento dei problemi e 
-                                    implementazione delle soluzioni richieste.
+                                    implementazione delle soluzioni.
                                 """ ]
+                                ]
+                            ]
                         ]
                     ]
                 )
-            , Block.custom (img [ id "maincontentimage", src "res/images/main.jpg" ] [])
             ]
         |> Card.view
 
@@ -318,7 +329,7 @@ mainContent =
 
 
 emailForm model =
-    Card.config [ Card.outlineInfo, Card.attrs [ class "maincard" ] ]
+    Card.config [ Card.outlineInfo, Card.attrs [ class "maincard formcard" ] ]
         |> Card.block []
             [ Block.custom
                 (Html.form [ Html.Events.onSubmit SubmitEmail ]
