@@ -187,6 +187,13 @@ subscriptions model =
 -- View
 
 
+boldSpan string =
+    span [style "font-weight" "bold"] [text string]
+
+italicSpan string =
+    span [style "font-style" "italic"] [text string]
+
+
 isSelected model page =
     if model.page == page then
         class "selected-nav-item"
@@ -249,22 +256,29 @@ mainCard =
                     , img [ class "maincontentimage headermd right", src "res/images/hardware.png" ] []
                     , div [ style "display" "flex", style "height" "100%" ]
                         [ div [ class "maincardtext" ]
-                            [ 
-                                h1 [] [ text "Hardware e Software" ]
+                            [ h1 [] [ text "Hardware e Software" ]
                             , div []
-                                [ p [] [ text """HSW snc è un'azienda nata a Bologna con lo 
-                                    scopo di realizzare soluzioni elettroniche 
-                                    in tutti i campi dove queste fossero richieste.
+                                [ p []
+                                    [ text """HSW snc è un'azienda nata a Bologna con lo 
+                                    scopo di realizzare soluzioni """
+                                    , boldSpan "efficienti"
+                                    , text """ in tutti i campi dove queste fossero richieste.
                                     Nel corso degli anni si è specializzata in 
-                                    applicazioni per il controllo industriale 
-                                    di vario tipo tra cui lavanderia, stiro, macchine agricole,
-                                    sensoristica avanzata.""" ]
-                                , p [] [ text """
-                                    Grazie all'esperienza che vanta in molteplici ambiti
-                                    HSW può fornire una consulenza specialistica e 
-                                    approfondita nel superamento dei problemi e 
+                                    applicazioni per il controllo industriale, sensoristica
+                                    avanzata, dispositivi per utilizzo privato.
+                                    """
+                                    ]
+                                , p []
+                                    [ text """
+                                    Grazie all'"""
+                                    ,  boldSpan "esperienza"
+                                    , text """ che vanta in molteplici campi
+                                    HSW può fornire una """
+                                    , boldSpan "consulenza specialistica e approfondita"
+                                    , text """ nel superamento dei problemi e 
                                     implementazione delle soluzioni.
-                                """ ]
+                                """
+                                    ]
                                 ]
                             ]
                         ]
@@ -282,7 +296,7 @@ secondaryCard =
                     |> Card.block []
                         [ Block.titleH1 [] [ text "I nostri prodotti" ]
                         , Block.quote []
-                            [ text "La nostra azienda può vantare una vasta esperienza sotto forma di molteplici dispositivi progettati e venduti nel corso degli anni."
+                            [ italicSpan "La nostra azienda può vantare una vasta esperienza sotto forma di molteplici dispositivi progettati e sviluppati nel corso degli anni."
                             ]
                         , Block.custom
                             (button [ class "discover" ] [ text "scopri di piu'" ])
@@ -297,7 +311,9 @@ secondaryCard =
                     |> Card.block []
                         [ Block.titleH1 [] [ text "Soluzioni ad Hoc e Consulenze" ]
                         , Block.quote []
-                            [ text "Il nostro punto di forza è la creazione di soluzioni su misura, progettate in stretta collaborazione con il cliente. Contattaci per una valutazione di fattibilità sulla realizzazione delle tue idee!"
+                            [ text "Il nostro punto di forza è la creazione di "
+                            , boldSpan "soluzioni su misura",
+                            text " progettate in stretta collaborazione con il cliente. Contattaci per una valutazione di fattibilità sulla realizzazione delle tue idee!"
                             ]
                         , Block.custom
                             (button [ class "discover", onClick ContactUs ] [ text "Richiedi un colloquio" ])
@@ -312,7 +328,7 @@ secondaryCard =
                         [ Block.custom (img [ id "elmrust", src "res/images/elmrust.png" ] [])
                         , Block.titleH1 [] [ text "Innovazione e Avanguardia" ]
                         , Block.quote []
-                            [ text "Siamo costantemente spinti alla ricerca di nuove tecnologie e paradigmi da applicare nei nostri prodotti"
+                            [ italicSpan "Siamo costantemente spinti alla ricerca di nuove tecnologie e paradigmi da applicare nei nostri prodotti"
                             ]
                         ]
                     |> Card.view
