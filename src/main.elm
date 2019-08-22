@@ -434,7 +434,7 @@ pageFooter =
             , Grid.col [ Bootstrap.Grid.Col.md2 ]
                 [ h6 [] [ text "Network" ]
                 , Html.ul [ class "list-unstyled" ]
-                    (List.map mutedlink [ ( "Linkedin", "https://www.linkedin.com/company/hsw/about/" ), ( "Github", "https://github.com/maldus512" ), ( "Medium", "https://medium.com/@mattia512maldini" ) ])
+                    (List.map mutedlink [ ( "Linkedin", "https://www.linkedin.com/company/hsw/about/" ), ( "Github", "https://github.com/maldus512/hswsnc" ), ( "Medium", "https://medium.com/@mattia512maldini" ) ])
                 ]
             , Grid.col [ Bootstrap.Grid.Col.md2 ]
                 [ h6 [] [ text "Prodotti" ]
