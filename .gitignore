@@ -1,6 +1,7 @@
 .vscode
 .sconsign.dblite
 .sass-cache
+tmp
 cgi-bin/emailrequest.py
 node_modules
 # elm-package generated files

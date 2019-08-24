@@ -462,7 +462,7 @@ pageFooter =
 
 view : Model -> Browser.Document Msg
 view model =
-    { title = "HSW"
+    { title = "HSW - Hardware & Software Design and Development"
     , body =
         [ div [ id "top" ] []
         , menu model

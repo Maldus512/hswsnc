@@ -1,17 +1,4 @@
 <IfModule mod_expires.c>
   ExpiresActive On
-  
-  # CSS
-  ExpiresByType compiled.css "access plus 1 hour"
-
-  # JS
-  ExpiresByType elm.js "access plus 1 hour"
-
-  # Images
-  ExpiresByType res/images/elm.png "access plus 1 hour"
-  ExpiresByType res/images/elmrust.png "access plus 1 hour"
-  ExpiresByType res/images/hardware.png "access plus 1 hour"
-  ExpiresByType res/images/hsw.png "access plus 1 hour"
-  ExpiresByType res/images/software.png "access plus 1 hour"
-  ExpiresByType res/images/redpcb.jpg "access plus 1 hour"
+  ExpiresDefault A300
 </IfModule>

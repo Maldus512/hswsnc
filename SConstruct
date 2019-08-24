@@ -1,8 +1,8 @@
 import os
 
-ELM = "elm.js"
-MINJS = "minelm.js"
-CSS = "compiled.css"
+ELM = "res/js/elm.js"
+MINJS = "res/js/minelm.js"
+CSS = "res/css/compiled.css"
 
 # Creates a Phony target
 def PhonyTargets(
@@ -30,4 +30,4 @@ env.Default(final)
 
 env.Command(ELM, elmsrc, "elm make src/main.elm --output={}".format(ELM))
 env.Command(MINJS, ELM, "./node_modules/.bin/uglifyjs {} --compress --output {}".format(ELM, MINJS))
-env.Command(CSS, scsssrc, "sass scss/custom.scss > {}".format(CSS))
+env.Command(CSS, scsssrc, "sass scss/custom.scss:{} --no-source-map --style compressed".format(CSS))

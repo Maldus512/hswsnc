@@ -7,6 +7,10 @@ footer {
     position: relative;
     box-shadow: 0 50vh 0 50vh lightgray;
     font-size : initial !important;
+
+    a {
+        margin: 2px;
+    }
 }
 
 #poweredby {

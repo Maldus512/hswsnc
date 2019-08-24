@@ -2,26 +2,32 @@
 <html lang="en">
 
 <head>
-    <title>HSW - Hardware & Software Design and Development</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Azienda che offre servizi di progettazione e sviluppo per soluzioni fortemente personalizzate.">
+    <meta name="description"
+        content="Azienda che offre servizi di progettazione e sviluppo per soluzioni fortemente personalizzate.">
     <meta name="keywords" content="Hardware,Software,Custom design,Custom solution">
     <meta name="author" content="Mattia Maldini">
     <link rel="preload" href="res/images/redpcb.jpg" as="image">
+    
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:site" content="HSW">
+    <meta property="twitter:image" content="www.hswsnc.com/res/images/hsw.png">
+    <meta property="twitter:title" content="HSW - Hardware & Software Design and Development">
+    <meta property="twitter:description" content="Azienda che offre servizi di progettazione e sviluppo per soluzioni di elettronica embedded fortemente personalizzate">
 
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="HSW">
+    <meta property="og:site_name" content="HSW - Progettazione e Sviluppo Hardware e Software">
     <meta property="og:url" content="www.hswsnc.com">
-    <meta property="og:description" content="Azienda che offre servizi di progettazione e sviluppo per soluzioni fortemente personalizzate">
+    <meta property="og:description"
+        content="Azienda che offre servizi di progettazione e sviluppo per soluzioni di elettronica embedded fortemente personalizzate">
     <meta property="og:title" content="HSW - Hardware & Software Design and Development">
     <meta property="og:image" content="www.hswsnc.com/res/images/hsw.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="compiled.css" />
-    <script src="res/js/jquery-3.4.1.min.js" type="text/javascript"></script>
-    <script src="minelm.js"></script>
+    <link rel="stylesheet" href="res/css/compiled.css" />
+    <script src="res/js/minelm.js"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
 
     <script type="application/ld+json">
@@ -39,8 +45,23 @@
         var app = Elm.Main.init()
         window.onscroll = function () { scrollFunction() };
         document.getElementById("back2top").onclick = function () {
-            $("html, body").animate({ scrollTop: 0 }, 400);
+            //$("html, body").animate({ scrollTop: 0 }, 400);
+            scrollToTop(500);
             return false;
+        }
+        function scrollToTop(scrollDuration) {
+            var cosParameter = window.scrollY / 2,
+                scrollCount = 0,
+                oldTimestamp = performance.now();
+            function step(newTimestamp) {
+                scrollCount += Math.PI / (scrollDuration / (newTimestamp - oldTimestamp));
+                if (scrollCount >= Math.PI) window.scrollTo(0, 0);
+                if (window.scrollY === 0) return;
+                window.scrollTo(0, Math.round(cosParameter + cosParameter * Math.cos(scrollCount)));
+                oldTimestamp = newTimestamp;
+                window.requestAnimationFrame(step);
+            }
+            window.requestAnimationFrame(step);
         }
 
         function scrollFunction() {
@@ -66,23 +87,15 @@
                 document.getElementById("back2top").style.display = "none";
             }
         }
-
-        function scrollTo(element, to, duration) {
-            console.log(element.scrollTop);
-            if (duration <= 0) return;
-            var difference = to - element.scrollTop;
-            var perTick = difference / duration * 10;
-
-            setTimeout(function () {
-                element.scrollTop = element.scrollTop + perTick;
-                if (element.scrollTop === to) return;
-                scrollTo(element, to, duration - 10);
-            }, 10);
-        }
-
     </script>
-    <h1 style="display : none; width : 0; height : 0;" id="seotitle">HSW - Hardware & Software Design and Development</h1>
-    <h2 style="display : none; width : 0; height : 0;" id="seotitle">Bringing custom design ideas to life</h1>
+    <h1 style="display : none; width : 0; height : 0;" id="seotitle">HSW - Hardware & Software Design and Development
+    </h1>
+    <h2 style="display : none; width : 0; height : 0;" id="seosubtitle">Bringing custom design ideas to life</h1>
+        <div style="display : none; width : 0; height : 0;" id="keywordiv">HSW progettazione hardware software sviluppo
+            Bologna design produzione
+            development soluzioni personalizzate custom su misura consulenza esperta approfondita assistenza esperienza
+            microcontrollori schede elettroniche controllo industriale embedded elettronica informatica tecnologia
+            avanguardia Italiana</div>
 </body>
 
 </html>
