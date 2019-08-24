@@ -75,8 +75,8 @@ urlUpdate url model =
 
         Just route ->
             let
-                x =
-                    Debug.log "route" route
+                ( navState, navCmd ) =
+                    Navbar.initialState NavMsg
             in
             ( { model | page = route }, resetViewport )
 
@@ -149,7 +149,7 @@ update msg model =
                     ( model, Cmd.none )
 
         ToggleConsent ->
-            ( { model | consent = not model.consent }, Cmd.none )
+            ( { model | consent = not model.consent, errors = clearFormError Consent model.errors }, Cmd.none )
 
         LinkClicked req ->
             case req of
@@ -390,7 +390,7 @@ emailForm model =
                             []
                         ]
                     , div []
-                        [ input [ type_ "checkbox", name "consent", onClick ToggleConsent, id "consentcb"] []
+                        [ input [ type_ "checkbox", name "consent", onClick ToggleConsent, id "consentcb" ] []
                         , label [ classFormError Consent model.errors, class "text-muted gdpr", for "consentcb" ] [ text "Accetto di essere contattato via email" ]
                         ]
                     , requestState model
@@ -432,7 +432,12 @@ productContent model =
 
 mutedlink ( string, link ) =
     Html.li []
-        [ Html.a [ class "text-muted", href link ] [ text string ]
+        [ case link of
+            Nothing ->
+                div [ class "text-muted" ] [ text string ]
+
+            Just url ->
+                Html.a [ class "text-muted", href url, Html.Attributes.target "_blank" ] [ text string ]
         ]
 
 
@@ -446,24 +451,24 @@ pageFooter =
             , Grid.col [ Bootstrap.Grid.Col.md2 ]
                 [ h6 [] [ text "Network" ]
                 , Html.ul [ class "list-unstyled" ]
-                    (List.map mutedlink [ ( "Linkedin", "https://www.linkedin.com/company/hsw/about/" ), ( "Github", "https://github.com/maldus512/hswsnc" ), ( "Medium", "https://medium.com/@mattia512maldini" ) ])
+                    (List.map mutedlink [ ( "Linkedin", Just "https://www.linkedin.com/company/hsw/about/" ), ( "Github", Just "https://github.com/maldus512/hswsnc" ), ( "Medium", Just "https://medium.com/@mattia512maldini" ) ])
                 ]
             , Grid.col [ Bootstrap.Grid.Col.md2 ]
                 [ h6 [] [ text "Prodotti" ]
                 , Html.ul [ class "list-unstyled" ]
-                    (List.map mutedlink [ ( "Lavanderia", "#" ), ( "Lavasecco", "#" ), ( "Stiro", "#" ), ( "Agricoltura", "#" ), ( "Lavorazione Pelli", "#" ) ])
+                    (List.map mutedlink [ ( "Lavanderia", Nothing ), ( "Lavasecco", Nothing ), ( "Stiro", Nothing ), ( "Agricoltura", Nothing ), ( "Lavorazione Pelli", Nothing ) ])
                 ]
             , Grid.col [ Bootstrap.Grid.Col.md3 ]
                 [ h6 [] [ text "Contatti" ]
                 , Html.ul [ class "list-unstyled" ]
                     (List.map mutedlink
                         [ ( "Sede legale : Via del Francia 14, Casalecchio (BO)"
-                          , "https://www.google.it/maps/place/Via+del+Francia,+14,+40033+Casalecchio+di+Reno+BO/@44.48637,11.286786,17z/data=!3m1!4b1!4m5!3m4!1s0x477fd4376f796989:0xdceb8472cb2fded3!8m2!3d44.48637!4d11.28898"
+                          , Just "https://www.google.it/maps/place/Via+del+Francia,+14,+40033+Casalecchio+di+Reno+BO/@44.48637,11.286786,17z/data=!3m1!4b1!4m5!3m4!1s0x477fd4376f796989:0xdceb8472cb2fded3!8m2!3d44.48637!4d11.28898"
                           )
-                        , ( "Sede produttiva : Via Roma 57/g, Zola Predosa (BO)", "https://www.google.it/maps/place/Via+Roma,+57,+40069+Zona+Industriale+BO/@44.4938389,11.2334336,17z/data=!3m1!4b1!4m5!3m4!1s0x477fd6e56b98afcb:0xc3c03558fe15590f!8m2!3d44.4938389!4d11.2356276" )
-                        , ( "Email : info@hswsnc.com", "mailto:info@hswsnc.com" )
-                        , ( "Tel : (+39) 051 619 619 1", "tel:0039-051-619-6191" )
-                        , ( "P.IVA : BO 01688021201", "#" )
+                        , ( "Sede produttiva : Via Roma 57/g, Zola Predosa (BO)", Just "https://www.google.it/maps/place/Via+Roma,+57,+40069+Zona+Industriale+BO/@44.4938389,11.2334336,17z/data=!3m1!4b1!4m5!3m4!1s0x477fd6e56b98afcb:0xc3c03558fe15590f!8m2!3d44.4938389!4d11.2356276" )
+                        , ( "Email : info@hswsnc.com", Just "mailto:info@hswsnc.com" )
+                        , ( "Tel : (+39) 051 619 619 1", Just "tel:0039-051-619-6191" )
+                        , ( "P.IVA : BO 01688021201", Nothing )
                         ]
                     )
                 ]

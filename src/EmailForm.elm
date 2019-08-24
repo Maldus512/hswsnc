@@ -1,4 +1,4 @@
-module EmailForm exposing (classFormError, emailPostRequest, isFormError, requestState, viewFormErrors, initEmailData, emailFormValidator, validateForm)
+module EmailForm exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -41,6 +41,8 @@ isFormError : FormField -> List FormError -> Bool
 isFormError field errors =
     errors |> List.any (\( fieldError, _ ) -> fieldError == field)
 
+clearFormError field errors =
+    errors |> List.filter (\(fieldError, _) -> fieldError /= field)
 
 emailPostRequest model msg =
     let
