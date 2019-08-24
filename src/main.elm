@@ -53,7 +53,7 @@ init flags url key =
             Navbar.initialState NavMsg
 
         ( model, urlCmd ) =
-            urlUpdate url { navKey = key, navState = navState, page = Home, carouselState = Carousel.initialState, email = "", emailBody = "", name = "", errors = [], emailRequestResult = Nothing }
+            urlUpdate url { navKey = key, navState = navState, page = Home, carouselState = Carousel.initialState, email = "", emailBody = "", name = "", consent = False, errors = [], emailRequestResult = Nothing }
     in
     ( model, Cmd.batch [ urlCmd, navCmd ] )
 
@@ -105,15 +105,14 @@ type Msg
     | CarouselMsg Carousel.Msg
     | ContactUs
     | SubmitEmail
-    | SetEmail String
-    | SetName String
-    | SetContent String
+    | SetFormField FormField String
+    | ToggleConsent
     | EmailResult (Result Http.Error String)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case Debug.log "msg" msg of
+    case first (Debug.log "msg, model" ( msg, model )) of
         NoOp ->
             ( model, Cmd.none )
 
@@ -121,9 +120,9 @@ update msg model =
             ( { model | navState = state }, Cmd.none )
 
         SubmitEmail ->
-            case validate validator model of
-                Ok _ ->
-                    ( { model | errors = [], emailRequestResult = Just Progress }, emailPostRequest model EmailResult )
+            case validate emailFormValidator model of
+                Ok validated ->
+                    ( { model | errors = [], emailRequestResult = Just Progress }, emailPostRequest validated EmailResult )
 
                 -- Run HTTP request
                 Err errors ->
@@ -135,14 +134,22 @@ update msg model =
         EmailResult (Err _) ->
             ( { model | emailRequestResult = Just Failure }, Cmd.none )
 
-        SetName name ->
-            ( { model | name = name }, Cmd.none )
+        SetFormField field string ->
+            case field of
+                Name ->
+                    ( { model | name = string }, Cmd.none )
 
-        SetEmail email ->
-            ( { model | email = email }, Cmd.none )
+                Email ->
+                    ( { model | email = string }, Cmd.none )
 
-        SetContent content ->
-            ( { model | emailBody = content }, Cmd.none )
+                Content ->
+                    ( { model | emailBody = string }, Cmd.none )
+
+                Consent ->
+                    ( model, Cmd.none )
+
+        ToggleConsent ->
+            ( { model | consent = not model.consent }, Cmd.none )
 
         LinkClicked req ->
             case req of
@@ -188,10 +195,11 @@ subscriptions model =
 
 
 boldSpan string =
-    span [style "font-weight" "bold"] [text string]
+    span [ style "font-weight" "bold" ] [ text string ]
+
 
 italicSpan string =
-    span [style "font-style" "italic"] [text string]
+    span [ style "font-style" "italic" ] [ text string ]
 
 
 isSelected model page =
@@ -271,7 +279,7 @@ mainCard =
                                 , p []
                                     [ text """
                                     Grazie all'"""
-                                    ,  boldSpan "esperienza"
+                                    , boldSpan "esperienza"
                                     , text """ che vanta in molteplici campi
                                     HSW può fornire una """
                                     , boldSpan "consulenza specialistica e approfondita"
@@ -312,8 +320,8 @@ secondaryCard =
                         [ Block.titleH1 [] [ text "Soluzioni ad Hoc e Consulenze" ]
                         , Block.quote []
                             [ text "Il nostro punto di forza è la creazione di "
-                            , boldSpan "soluzioni su misura",
-                            text " progettate in stretta collaborazione con il cliente. Contattaci per una valutazione di fattibilità sulla realizzazione delle tue idee!"
+                            , boldSpan "soluzioni su misura"
+                            , text " progettate in stretta collaborazione con il cliente. Contattaci per una valutazione di fattibilità sulla realizzazione delle tue idee!"
                             ]
                         , Block.custom
                             (button [ class "discover", onClick ContactUs ] [ text "Richiedi un colloquio" ])
@@ -357,7 +365,7 @@ emailForm model =
                             , placeholder "Nome"
                             , classFormError Name model.errors
                             , name "name"
-                            , Html.Events.onInput SetName
+                            , Html.Events.onInput <| SetFormField Name
                             ]
                             []
                         ]
@@ -368,7 +376,7 @@ emailForm model =
                             , placeholder "Email a cui risponderemo"
                             , classFormError Name model.errors
                             , name "mail"
-                            , Html.Events.onInput SetEmail
+                            , Html.Events.onInput <| SetFormField Email
                             ]
                             []
                         ]
@@ -377,9 +385,13 @@ emailForm model =
                             [ placeholder "Scrivi il tuo messaggio"
                             , classFormError Content model.errors
                             , name "content"
-                            , Html.Events.onInput SetContent
+                            , Html.Events.onInput <| SetFormField Content
                             ]
                             []
+                        ]
+                    , div []
+                        [ input [ type_ "checkbox", name "consent", onClick ToggleConsent, id "consentcb"] []
+                        , label [ classFormError Consent model.errors, class "text-muted gdpr", for "consentcb" ] [ text "Accetto di essere contattato via email" ]
                         ]
                     , requestState model
                     ]

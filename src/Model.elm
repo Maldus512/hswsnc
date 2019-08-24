@@ -1,22 +1,39 @@
-module Model exposing(..)
+module Model exposing (EmailRequestData, FormError, FormField(..), Model, Page(..), RequestResult(..))
 
+import Bootstrap.Carousel as Carousel
 import Bootstrap.Navbar as Navbar
 import Browser.Navigation as Navigation
-import Bootstrap.Carousel as Carousel
 import Http
 
+
+
 -- Model
+
+
 type FormField
     = Email
     | Content
     | Name
+    | Consent
 
 
-type alias Error =
+type alias EmailRequestData =
+    { consent : Bool
+    , name : String
+    , email : String
+    , emailBody : String
+    }
+
+
+type alias FormError =
     ( FormField, String )
 
-type RequestResult = 
-    Success | Failure | Progress
+
+type RequestResult
+    = Success
+    | Failure
+    | Progress
+
 
 type Page
     = Home
@@ -29,10 +46,11 @@ type alias Model =
     { navState : Navbar.State
     , navKey : Navigation.Key
     , page : Page
+    , consent : Bool
     , email : String
     , name : String
     , emailBody : String
     , emailRequestResult : Maybe RequestResult
-    , errors : List Error
+    , errors : List FormError
     , carouselState : Carousel.State
     }

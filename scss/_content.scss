@@ -260,6 +260,11 @@ input[type=submit],
     color: red;
 }
 
+label.errorinput {
+    font-weight: bold;
+    color : red !important;
+}
+
 .formcard {
     padding : 20px;
 }
@@ -273,21 +278,24 @@ form {
     position: relative;
     text-align: left;
 
-    p {
+    input[type=checkbox]{
+        margin : 5px;
+    }
 
-        input,
+    .gdpr {
+        display: inline;
+    }
+
+    p {
         input {
             display: inline-block;
             margin-bottom: 0px;
+            width: 70%;
         }
 
         label {
             width: 30%;
             font-weight: bold;
-        }
-
-        input {
-            width: 70%;
         }
 
         textarea {
@@ -308,6 +316,7 @@ form {
         padding: auto;
         min-width: 25%;
         height: 45px;
+        margin-top: 10px;
     }
 
     .submit-success {
