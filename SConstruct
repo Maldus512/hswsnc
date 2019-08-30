@@ -21,7 +21,8 @@ env_options = {
 }
 
 scsssrc = Glob("scss/*.scss")
-elmsrc = Glob("src/*.elm")
+elmsrc = Glob("src/**/*.elm")
+elmsrc += Glob("src/*.elm")
 
 env = Environment(**env_options)
 

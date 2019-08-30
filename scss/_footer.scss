@@ -6,10 +6,13 @@ footer {
     border-width: 2px;
     position: relative;
     box-shadow: 0 50vh 0 50vh lightgray;
-    font-size : initial !important;
+    font-size: initial !important;
 
-    a {
-        margin: 2px;
+    @media screen and (max-width : 960px) {
+        li {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
     }
 }
 

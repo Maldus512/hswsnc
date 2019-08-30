@@ -12,11 +12,11 @@
     <meta name="author" content="Mattia Maldini">
     <link rel="preload" href="res/images/redpcb.jpg" as="image">
     
-    <meta property="twitter:card" content="summary">
-    <meta property="twitter:site" content="HSW">
-    <meta property="twitter:image" content="www.hswsnc.com/res/images/hsw.png">
-    <meta property="twitter:title" content="HSW - Hardware & Software Design and Development">
-    <meta property="twitter:description" content="Azienda che offre servizi di progettazione e sviluppo per soluzioni di elettronica embedded fortemente personalizzate">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="HSW">
+    <meta name="twitter:image" content="www.hswsnc.com/res/images/hsw.png">
+    <meta name="twitter:title" content="HSW - Hardware & Software Design and Development">
+    <meta name="twitter:description" content="Azienda che offre servizi di progettazione e sviluppo per soluzioni di elettronica embedded fortemente personalizzate">
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="HSW - Progettazione e Sviluppo Hardware e Software">
@@ -44,12 +44,10 @@
 <body>
     <script>
         var app = Elm.Main.init()
+        app.ports.scrollTop.subscribe(function(data) {
+            scrollToTop(data);
+        })
         window.onscroll = function () { scrollFunction() };
-        document.getElementById("back2top").onclick = function () {
-            //$("html, body").animate({ scrollTop: 0 }, 400);
-            scrollToTop(500);
-            return false;
-        }
         function scrollToTop(scrollDuration) {
             var cosParameter = window.scrollY / 2,
                 scrollCount = 0,

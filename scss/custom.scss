@@ -3,6 +3,7 @@
 @import "header";
 @import "content";
 @import "footer";
+@import "productfilter";
 
 body,
 html {
@@ -11,8 +12,8 @@ html {
 }
 
 
-.bodybg {
-    background : linear-gradient(to bottom, $reddish 1000px, $lightgraysh 100%, lightgrey 100%);
+.secondarybg {
+    background : linear-gradient(to bottom, $reddish 1000px, $lightgraysh 100%);
 }
 
 body {

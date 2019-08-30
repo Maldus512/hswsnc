@@ -10,8 +10,6 @@
     background-color: $cardbg;
     overflow: hidden;
 
-    text-align: center;
-
     blockquote {
         padding: 20px;
     }
@@ -24,6 +22,8 @@
     border-width: 10px 0px 0px 0px;
     border-style: solid;
     border-color: darkred;
+
+    text-align: center;
     //max-height: 500px;
 
     h1 {
@@ -34,8 +34,7 @@
 
         @media screen and (max-width : 720px) {
             font-size: 32px;
-        margin-top: 20px;
-
+            margin-top: 20px;
         }
     }
 
@@ -55,17 +54,16 @@
 }
 
 .maincard {
-    height: 500px;
+    min-height: 500px;
 
     @media screen and (max-width: 960px) {
-        height: auto;
+        min-height: 400px;
     }
 }
 
 
 .maincardtext {
-    margin-left: 40px;
-    margin-right: 40px;
+    margin : 20px;
     align-self: center;
 }
 
@@ -108,8 +106,9 @@
 
 .maincontentimage {
     position: relative;
-    height: 100%;
-    max-width: 25%;
+    //height: 100%;
+    min-height: 100%;
+    max-width: 20%;
 }
 
 .headermd {
@@ -126,25 +125,6 @@
     .headermd {
         display: none;
     }
-
-    /*.headersm {
-       //display: initial;
-        //overflow: auto;
-        display: flex;
-        flex-direction: row;
-        margin-bottom: 10px;
-        align-content: space-between;
-    }
-
-    div.maincontentimage {
-        flex : 1;
-    }
-    img.maincontentimage {
-        flex: 4;
-        max-height: 300px;
-        max-width: 45%;
-        height: 100%;
-    }*/
 }
 
 
@@ -160,7 +140,7 @@
     padding-left: 60px;
     border-right-width: 10px;
 
-    @media screen and (max-width : 480px){
+    @media screen and (max-width : 480px) {
         padding-left: 5px;
     }
 
@@ -174,7 +154,7 @@
     padding-right: 60px;
     border-left-width: 10px;
 
-    @media screen and (max-width : 480px){
+    @media screen and (max-width : 480px) {
         padding-right: 5px;
     }
 
@@ -207,11 +187,12 @@
     img {
         max-height: 400px;
         max-width: 80%;
+        align-self: center;
 
         @media screen and (max-width : 720px) {
             display: block;
             margin: auto;
-            max-height: 200px
+            max-height: 250px
         }
     }
 
@@ -262,11 +243,11 @@ input[type=submit],
 
 label.errorinput {
     font-weight: bold;
-    color : red !important;
+    color: red !important;
 }
 
 .formcard {
-    padding : 20px;
+    padding: 20px;
 }
 
 form {
@@ -278,8 +259,8 @@ form {
     position: relative;
     text-align: left;
 
-    input[type=checkbox]{
-        margin : 5px;
+    input[type=checkbox] {
+        margin: 5px;
     }
 
     .gdpr {
@@ -379,12 +360,6 @@ textarea {
 
     100% {
         transform: rotate(360deg);
-    }
-}
-
-#elmrustcard {
-    @media screen and (min-width : 960px) {
-        max-height: 220px;
     }
 }
 

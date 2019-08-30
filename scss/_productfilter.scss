@@ -1,0 +1,87 @@
+@import "base";
+
+
+#productfilter {
+    padding: 0px 100px;
+    min-height: 90%;
+}
+
+#filter {
+    border-width: 0px;
+    border-width: 5px 0px 5px 0px;
+    border-style: solid;
+    border-color: darkred;
+
+}
+
+.accordion .card {
+    border-radius: 15px 15px 0 0;
+}
+
+#filterheader {
+    padding: 2px;
+    border: gray solid;
+    border-radius: 15px 15px 0px 0px;
+    border-width: 3px 3px 0px 3px;
+
+    .btn-link {
+        color: darkred;
+        font-variant: small-caps;
+        font-weight: bold;
+    }
+}
+
+.producticon {
+    max-height: 200px;
+    width: auto;
+
+    @media screen and (max-width : 720px) {
+        position: relative;
+        bottom: 5px;
+        display: block;
+        width: 100%;
+        margin: auto;
+        height: auto;
+        max-height: 100%;
+    }
+}
+
+.productcard {
+    border-width: 10px 0 0 0;
+
+    .card-body {
+        padding-bottom: 60px;
+    }
+}
+
+.productinfo {
+    height: 90%;
+    padding-top: inherit;
+    padding-bottom: inherit;
+    position: relative;
+
+    a {
+        position: absolute;
+        bottom: 5px;
+        right: 10px;
+    }
+}
+
+.accordioncheckbox {
+    display : inline-block;
+    margin-right: 60px;
+    input {
+        margin: 6px;
+    }
+}
+
+.tag {
+    background-color: $lightgraysh;
+    font-size: 12px;
+    border: darkkhaki solid 2px;
+    border-radius: 5px;
+    display: inline-block;
+    margin : 5px;
+    padding: 5px;
+    font-weight: bold;
+}
