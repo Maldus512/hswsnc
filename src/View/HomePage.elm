@@ -5,10 +5,10 @@ import Bootstrap.Card.Block as Block
 import Bootstrap.Grid as Grid
 import Bootstrap.Grid.Col
 import Html exposing (..)
-import Html.Events exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (..)
+import Model exposing (Msg(..))
 import View.Utils exposing (..)
-import Model exposing(Msg(..))
 
 
 mainCard =
@@ -16,13 +16,8 @@ mainCard =
         |> Card.block []
             [ Block.custom
                 (div []
-                    [ div [ class "headersm" ]
-                        [ img [ class "maincontentimage left", src "res/images/software.png" ] []
-                        , div [ class "maincontentimage" ] []
-                        , img [ class "maincontentimage right", src "res/images/hardware.png" ] []
-                        ]
-                    , img [ class "maincontentimage headermd left", src "res/images/software.png" ] []
-                    , img [ class "maincontentimage headermd right", src "res/images/hardware.png" ] []
+                    [ img [ class "maincontentimage headermd left", src "res/images/software.jpg" ] []
+                    , img [ class "maincontentimage headermd right", src "res/images/hardware.jpg" ] []
                     , div [ style "display" "flex", style "height" "100%" ]
                         [ div [ class "maincardtext" ]
                             [ h1 [] [ text "Hardware e Software" ]
@@ -37,7 +32,7 @@ mainCard =
                                     avanzata, dispositivi per utilizzo privato.
                                     """
                                     ]
-                                , p []
+                                , p [ class "hidesm" ]
                                     [ text """
                                     Grazie all'"""
                                     , boldSpan "esperienza"
@@ -63,12 +58,14 @@ secondaryCard =
             [ Grid.col [ Bootstrap.Grid.Col.md8 ]
                 [ Card.config [ Card.outlineInfo, Card.attrs [ class "faderight" ] ]
                     |> Card.block []
-                        [ Block.titleH1 [] [ text "I nostri prodotti" ]
+                        [ Block.custom (img [ class "secondarycardimg", src "res/images/stiro.png" ] [])
+                        , Block.titleH1 [] [ text "I nostri prodotti" ]
                         , Block.quote []
-                            [ italicSpan "La nostra azienda può vantare una vasta esperienza sotto forma di molteplici dispositivi progettati e sviluppati nel corso degli anni."
+                            [ italicSpan "La nostra azienda può vantare una vasta esperienza nello sviluppo di "
+                            , boldSpan "elettronica dedicata"
                             ]
                         , Block.custom
-                            (button [ class "discover", onClick DiscoverMoreProducts] [ text "scopri di piu'" ])
+                            (a [ class "discover", href "#filtroprodotti" ] [ text "scopri di piu'" ])
                         ]
                     |> Card.view
                 ]
@@ -85,7 +82,7 @@ secondaryCard =
                             , text " progettate in stretta collaborazione con il cliente. Contattaci per una valutazione di fattibilità sulla realizzazione delle tue idee!"
                             ]
                         , Block.custom
-                            (button [ class "discover", onClick ContactUs ] [ text "Richiedi un colloquio" ])
+                            (a [ class "discover", href "#contatti" ] [ text "Richiedi un colloquio" ])
                         ]
                     |> Card.view
                 ]
@@ -93,8 +90,8 @@ secondaryCard =
         , Grid.row []
             [ Grid.col [ Bootstrap.Grid.Col.md8 ]
                 [ Card.config [ Card.outlineInfo, Card.attrs [ class "faderight" ] ]
-                    |> Card.block [ Block.attrs [ id "elmrustcard" ] ]
-                        [ Block.custom (img [ id "elmrust", src "res/images/elmrust.png" ] [])
+                    |> Card.block []
+                        [ Block.custom (img [ class "secondarycardimg", src "res/images/elmrust.png" ] [])
                         , Block.titleH1 [] [ text "Innovazione e Avanguardia" ]
                         , Block.quote []
                             [ italicSpan "Siamo costantemente spinti alla ricerca di nuove tecnologie e paradigmi da applicare nei nostri prodotti"

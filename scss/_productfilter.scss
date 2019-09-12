@@ -4,6 +4,12 @@
 #productfilter {
     padding: 0px 100px;
     min-height: 90%;
+    @media screen and (max-width : 720px) {
+        padding: 0 50px;
+    }
+    @media screen and (max-width : 480px) {
+        padding: initial;
+    }
 }
 
 #filter {
@@ -34,6 +40,7 @@
 .producticon {
     max-height: 200px;
     width: auto;
+    margin: 16px;
 
     @media screen and (max-width : 720px) {
         position: relative;
@@ -45,6 +52,16 @@
         max-height: 100%;
     }
 }
+
+.didascalia {
+    border: solid darkgray;
+    border-width: 0 0 0 4px;
+    font-style: italic;
+    margin-left: -10px;
+    padding-left: 10px;
+    font-size: 18px;
+}
+
 
 .productcard {
     border-width: 10px 0 0 0;
@@ -62,14 +79,23 @@
 
     a {
         position: absolute;
-        bottom: 5px;
+        bottom: -10px;
         right: 10px;
     }
 }
 
 .accordioncheckbox {
-    display : inline-block;
+    display: inline-block;
     margin-right: 60px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    box-shadow: 1px 1px 2px $reddish;
+    padding: 4px;
+
+    label {
+        margin-bottom: 0px;
+    }
+
     input {
         margin: 6px;
     }
@@ -81,7 +107,16 @@
     border: darkkhaki solid 2px;
     border-radius: 5px;
     display: inline-block;
-    margin : 5px;
+    margin: 5px;
     padding: 5px;
     font-weight: bold;
+}
+
+#infocatalogo {
+    border-width: 10px 0 0 0;
+
+    .card-body {
+        padding-top: 10px;
+    }
+    margin-bottom: 30px;
 }

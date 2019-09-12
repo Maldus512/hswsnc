@@ -15,7 +15,7 @@ import Url exposing (Url)
 
 type alias ProductInfo =
     { name : String
-    , description : String
+    , description : List String
     , image : Maybe String
     , tags : List String
     , datasheet : String
@@ -86,8 +86,6 @@ type Msg
     | LinkClicked Browser.UrlRequest
     | UrlChanged Url.Url
     | CarouselMsg Carousel.Msg
-    | ContactUs
-    | DiscoverMoreProducts
     | SubmitEmail
     | SetFormField FormField String
     | ToggleConsent

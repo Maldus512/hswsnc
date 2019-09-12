@@ -10,24 +10,21 @@ img.logo {
 }
 
 .navbar {
-    $p1 : 24%;
-    $p2 : 55%;
+    $p1 : 35%;
+    $p2 : 65%;
     $p3 : 100%;
-    background: -moz-linear-gradient(165deg,  $headerlight $p1, $headergradient $p2, $headerdark $p3); /* FF3.6+ */
+    $dg : 160deg;
+    background: -moz-linear-gradient($dg,  $headerlight $p1, $headergradient $p2, $headerdark $p3); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, right bottom, color-stop($p1,$headerlight), color-stop($p2,$headergradient), color-stop($p3,$headerdark)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(165deg,  $headerlight $p1,$headergradient $p2,$headerdark $p3); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(165deg,  $headerlight $p1,$headergradient $p2,$headerdark $p3); /* Opera 11.10+ */
-    background: -ms-linear-gradient(165deg,  $headerlight 24%, $headergradient 55%, $headerdark $p3); /* IE10+ */
-    background: linear-gradient(165deg, $headerlight 24%, $headergradient 55%, $headerdark $p3); //#333232 100%); /* W3C */
+    background: -webkit-linear-gradient($dg,  $headerlight $p1,$headergradient $p2,$headerdark $p3); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient($dg,  $headerlight $p1,$headergradient $p2,$headerdark $p3); /* Opera 11.10+ */
+    background: -ms-linear-gradient($dg,  $headerlight $p1, $headergradient $p2, $headerdark $p3); /* IE10+ */
+    background: linear-gradient($dg, $headerlight $p1, $headergradient $p2, $headerdark $p3); //#333232 100%); /* W3C */
+    //background-color: $headerlight !important;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7d7e7d', endColorstr='#0e0e0e', GradientType=0);
     /* IE6-9 */
-    border-color: black !important;
+    border-bottom: solid $headerdark 1.5px !important;
     z-index: 9999;
-
-    -webkit-box-shadow: 0 8px 6px -6px #999;
-    -moz-box-shadow: 0 8px 6px -6px #999;
-    box-shadow: 0 8px 6px -6px #999;
-
 }
 
 #navbar,
@@ -83,6 +80,7 @@ nav {
     font-weight: bold;
     font-variant: small-caps;
     box-sizing: border-box;
+    text-shadow: 1px 1px 2px $headerdark;
 }
 
 .nav-link:after {

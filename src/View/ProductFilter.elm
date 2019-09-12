@@ -92,7 +92,7 @@ selectedProducts data =
 
 productListGetRequest msg =
     Http.get
-        { url = "/cgi-bin/prodotti.json"
+        { url = "/data/prodotti.json"
         , expect = Http.expectJson msg productsDecoder
         }
 
@@ -106,15 +106,14 @@ productDecoder : JD.Decoder ProductInfo
 productDecoder =
     JD.map5 ProductInfo
         (JD.field "name" JD.string)
-        (JD.field "description" JD.string)
+        (JD.field "description" (JD.list JD.string))
         (JD.maybe (JD.field "image" JD.string))
         (JD.field "tags" (JD.list JD.string))
         (JD.field "datasheet" JD.string)
 
 
-
 tagList tags =
-    List.map (\t -> span [class "tag"] [text t]) tags
+    List.map (\t -> span [ class "tag" ] [ text t ]) tags
 
 
 productCard : ProductInfo -> Html Msg
@@ -135,7 +134,10 @@ productCard product =
             , Block.custom <|
                 div [ class "productinfo" ]
                     [ immagine
-                    , div [] [ text product.description ]
+                    , div [] <|
+                        List.map
+                            (\d -> p [] [ text d ])
+                            product.description
                     , a [ href ("res/pdf/" ++ product.datasheet), class "discover", target "_blank" ] [ text "scheda tecnica" ]
                     ]
             ]
@@ -145,7 +147,15 @@ productCard product =
 productFilter : Model -> Html Msg
 productFilter model =
     div [ id "productfilter" ]
-        ([ Accordion.config AccordionMsg
+        ([ Card.config [ Card.outlineInfo, Card.attrs [ id "infocatalogo" ] ]
+            |> Card.block []
+                [ Block.titleH1 [] [ text "Catalogo" ]
+                , Block.custom <|
+                    div [ class "didascalia" ]
+                        [ text "Questo catalogo ha la finalità di delineare il nostro campo di lavoro e indicare le nostre competenze. Soltanto parte dei dispositivi sono pronti per l'utilizzo diretto da parte di un cliente; se pensate che una soluzione possa fare al caso vostro nella forma in cui è descritta o con modifiche, non esitate a ", a [ href "#contatti" ] [ text "contattatarci" ] ]
+                ]
+            |> Card.view
+         , Accordion.config AccordionMsg
             |> Accordion.withAnimation
             |> Accordion.cards
                 [ Accordion.card
@@ -157,7 +167,8 @@ productFilter model =
                         [ Accordion.block []
                             [ Block.custom <|
                                 div [] <|
-                                    productCheckboxes model.products.productTags
+                                    productCheckboxes
+                                        model.products.productTags
                             ]
                         ]
                     }

@@ -17,7 +17,7 @@ slide pimg title content =
                     , div []
                         [ h1 [] [ text title ]
                         , p [] [ text content ]
-                        , button [ class "discover", onClick DiscoverMoreProducts ] [ text "scopri di piu'" ]
+                        , a [ class "discover", href "#filtroprodotti" ] [ text "scopri di piu'" ]
                         ]
                     ]
                 ]

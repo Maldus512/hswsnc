@@ -1,0 +1,49 @@
+[
+    {
+        "name": "CTouch",
+        "description": [
+            "La scheda CTouch è pensata per il controllo di macchine industriali di media portata.",
+            "In grado di controllare fino a 23 uscite, leggere 22 ingressi, gestire 6 sensori analogici (di cui 2 pressostati già installati sul PCB) e pilotare 4 convertitori DAC, il dispositivo si presta alla gestione di macchine semiautomatiche con supervisione umana."
+        ],
+        "image": "cubetto.png",
+        "datasheet": "ctouch.pdf",
+        "tags": [
+            "display",
+            "DC",
+            "AC",
+            "touch",
+            "Microchip"
+        ]
+    },
+    {
+        "name": "Dry Control Slim",
+        "description": [
+            "Il Dry Control Slim è una semplice sonda per il passaggio di liquido. La sua particolarità è la capacità di operare senza bisogno di entrare fisicamente in contatto con il fluido in questione.",
+            "Il controllo che attua è triviale: attiva un contatto nel momento in cui viene rilevato un flusso superiore a un setpoint calibrato tramite un potenziomentro."
+        ],
+        "image": "drycontrol.png",
+        "datasheet": "drycontrol.pdf",
+        "tags": [
+            "pronto per la vendita",
+            "elettronica",
+            "AC",
+            "DC",
+            "sonda"
+        ]
+    },
+    {
+        "name" : "RTemp",
+        "description" : [
+            "RTemp è una semplice sonda di temperatura e umidità, ma con diverse potenzialità in termini di connettività e configurazione.",
+            "Il comportamento di attivazione e spegnimento dei contatti in base alle letture dei sensori può essere modificato tramite i diversi jumper del PCB; inoltre la scheda presenta una connessione 485 e l'attacco per un display monocromatico, permettendo un certo raggio di evoluzione rispetto alla sua funzione primaria."
+        ],
+        "image" : "rtemp.png",
+        "datasheet" : "rtemp.pdf",
+        "tags" : [
+            "AC",
+            "DC",
+            "sonda",
+            "Renesas"
+        ]
+    }
+]

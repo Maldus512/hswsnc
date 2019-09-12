@@ -202,13 +202,6 @@ update msg model =
         UrlChanged url ->
             urlUpdate url model
 
-        ContactUs ->
-            routeTo "https://www.hswsnc.com/#contatti" model
-
-        DiscoverMoreProducts ->
-            --routeTo "https://www.hswsnc.com/#filtroprodotti" model
-            routeTo "https://www.hswsnc.com/#prodotti" model
-
         CarouselMsg subMsg ->
             ( { model | carouselState = Carousel.update subMsg model.carouselState }, Cmd.none )
 
