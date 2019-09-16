@@ -23,13 +23,13 @@ mainCard =
                             [ h1 [] [ text "Hardware e Software" ]
                             , div []
                                 [ p []
-                                    [ text """HSW snc è un'azienda nata a Bologna con lo 
+                                    [ boldSpan "HSW snc ", text """è un'azienda nata a Bologna con lo 
                                     scopo di realizzare soluzioni """
                                     , boldSpan "efficienti"
-                                    , text """ in tutti i campi dove queste fossero richieste.
+                                    , text """ in tutti i campi nei quali queste fossero richieste.
                                     Nel corso degli anni si è specializzata in 
                                     applicazioni per il controllo industriale, sensoristica
-                                    avanzata, dispositivi per utilizzo privato.
+                                    avanzata e dispositivi per utilizzo privato.
                                     """
                                     ]
                                 , p [ class "hidesm" ]
@@ -58,7 +58,7 @@ secondaryCard =
             [ Grid.col [ Bootstrap.Grid.Col.md8 ]
                 [ Card.config [ Card.outlineInfo, Card.attrs [ class "faderight" ] ]
                     |> Card.block []
-                        [ Block.custom (img [ class "secondarycardimg", src "res/images/stiro.png" ] [])
+                        [ Block.custom (img [ class "secondarycardimg", src "res/images/stiro-sm.png" ] [])
                         , Block.titleH1 [] [ text "I nostri prodotti" ]
                         , Block.quote []
                             [ italicSpan "La nostra azienda può vantare una vasta esperienza nello sviluppo di "

@@ -4,9 +4,11 @@
 #productfilter {
     padding: 0px 100px;
     min-height: 90%;
+
     @media screen and (max-width : 720px) {
         padding: 0 50px;
     }
+
     @media screen and (max-width : 480px) {
         padding: initial;
     }
@@ -118,5 +120,6 @@
     .card-body {
         padding-top: 10px;
     }
+
     margin-bottom: 30px;
 }
