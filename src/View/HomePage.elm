@@ -22,26 +22,13 @@ mainCard =
                         [ div [ class "maincardtext" ]
                             [ h1 [] [ text "Hardware e Software" ]
                             , div []
-                                [ p []
-                                    [ boldSpan "HSW snc ", text """è un'azienda nata a Bologna con lo 
+                                [ h4 []
+                                    [ boldSpan "HSW snc "
+                                    , text """è un'azienda nata a Bologna con lo 
                                     scopo di realizzare soluzioni """
-                                    , boldSpan "efficienti"
+                                    , boldSpan "efficienti e specifiche"
                                     , text """ in tutti i campi nei quali queste fossero richieste.
-                                    Nel corso degli anni si è specializzata in 
-                                    applicazioni per il controllo industriale, sensoristica
-                                    avanzata e dispositivi per utilizzo privato.
                                     """
-                                    ]
-                                , p [ class "hidesm" ]
-                                    [ text """
-                                    Grazie all'"""
-                                    , boldSpan "esperienza"
-                                    , text """ che vanta in molteplici campi
-                                    HSW può fornire una """
-                                    , boldSpan "consulenza specialistica e approfondita"
-                                    , text """ nel superamento dei problemi e 
-                                    implementazione delle soluzioni.
-                                """
                                     ]
                                 ]
                             ]

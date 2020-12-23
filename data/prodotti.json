@@ -1,49 +1,74 @@
 [
-    {
-        "name": "CTouch",
-        "description": [
-            "La scheda CTouch è pensata per il controllo di macchine industriali di media portata.",
-            "In grado di controllare fino a 23 uscite, leggere 22 ingressi, gestire 6 sensori analogici (di cui 2 pressostati già installati sul PCB) e pilotare 4 convertitori DAC, il dispositivo si presta alla gestione di macchine semiautomatiche con supervisione umana."
-        ],
-        "image": "cubetto.png",
-        "datasheet": "ctouch.pdf",
-        "tags": [
-            "display",
-            "DC",
-            "AC",
-            "touch",
-            "Microchip"
-        ]
-    },
-    {
-        "name": "Dry Control Slim",
-        "description": [
-            "Il Dry Control Slim è una semplice sonda per il passaggio di liquido. La sua particolarità è la capacità di operare senza bisogno di entrare fisicamente in contatto con il fluido in questione.",
-            "Il controllo che attua è triviale: attiva un contatto nel momento in cui viene rilevato un flusso superiore a un setpoint calibrato tramite un potenziomentro."
-        ],
-        "image": "drycontrol.png",
-        "datasheet": "drycontrol.pdf",
-        "tags": [
-            "pronto per la vendita",
-            "elettronica",
-            "AC",
-            "DC",
-            "sonda"
-        ]
-    },
-    {
-        "name" : "RTemp",
-        "description" : [
-            "RTemp è una semplice sonda di temperatura e umidità, ma con diverse potenzialità in termini di connettività e configurazione.",
-            "Il comportamento di attivazione e spegnimento dei contatti in base alle letture dei sensori può essere modificato tramite i diversi jumper del PCB; inoltre la scheda presenta una connessione 485 e l'attacco per un display monocromatico, permettendo un certo raggio di evoluzione rispetto alla sua funzione primaria."
-        ],
-        "image" : "rtemp.png",
-        "datasheet" : "rtemp.pdf",
-        "tags" : [
-            "AC",
-            "DC",
-            "sonda",
-            "Renesas"
-        ]
-    }
+  {
+    "name": "CTouch",
+    "description": [
+      "La scheda CTouch è pensata per il controllo di macchine industriali di media portata.",
+      "In grado di controllare fino a 23 uscite, leggere 22 ingressi, gestire 6 sensori analogici (di cui 2 pressostati già installati sul PCB) e pilotare 4 convertitori DAC, il dispositivo si presta alla gestione di macchine semiautomatiche con supervisione umana."
+    ],
+    "image": "cubetto.png",
+    "datasheet": "ctouch.pdf",
+    "tags": ["display", "DC", "AC", "touch"]
+  },
+  {
+    "name": "Dry Control Slim",
+    "description": [
+      "Il Dry Control Slim è una semplice sonda per il passaggio di liquido. La sua particolarità è la capacità di operare senza bisogno di entrare fisicamente in contatto con il fluido in questione.",
+      "Il controllo che attua è triviale: attiva un contatto nel momento in cui viene rilevato un flusso superiore a un setpoint calibrato tramite un potenziomentro."
+    ],
+    "image": "drycontrol.png",
+    "datasheet": "drycontrol.pdf",
+    "tags": ["pronto per la vendita", "elettronica", "AC", "DC", "sonda"]
+  },
+  {
+    "name": "RTemp",
+    "description": [
+      "RTemp è una semplice sonda di temperatura e umidità, ma con diverse potenzialità in termini di connettività e configurazione.",
+      "Il comportamento di attivazione e spegnimento dei contatti in base alle letture dei sensori può essere modificato tramite i diversi jumper del PCB; inoltre la scheda presenta una connessione 485 e l'attacco per un display monocromatico, permettendo un certo raggio di evoluzione rispetto alla sua funzione primaria."
+    ],
+    "image": "rtemp.png",
+    "datasheet": "rtemp.pdf",
+    "tags": ["AC", "DC", "sonda"]
+  },
+  {
+    "name": "CapLevel",
+    "description": [
+      "Il CapLevel è un sensore per la percezione di livelli di liquidi non conduttivi. Il dispositivo viene inserito in una sonda che entra a contatto con il liquido stesso.",
+      "Prima dell'utilizzo deve essere tarato indicando lo stato di contenitore vuoto. Quando il liquido tocca la sonda viene chiuso un conttatto controllato dal relè sul pcb."
+    ],
+    "image": "caplevel.png",
+    "datasheet": "caplevel.pdf",
+    "tags": ["AC", "DC", "sonda"]
+  },
+  {
+    "name": "FlowControl",
+    "description": [
+      "La scheda per il controllo di flusso è un dispositivo pensato per regolare il flusso di un liquido tramite un rubinetto a motore.",
+      "Collegandolo a un sensore ad impulsi è in grado di leggere la portata del flusso e controllarlo in tempo reale.",
+      "Questo controllo è estensibile tramite canali di comunicazione come WiFi e Bluetooth, magari tramite l'applicazione su uno smartphone."
+    ],
+    "image": "flowcontrol.png",
+    "datasheet": "flowcontrol.pdf",
+    "tags": ["AC", "DC", "WiFi", "Bluetooth", "display"]
+  },
+  {
+    "name": "SControl",
+    "description": [
+      "SControl è un dispositivo avanzato per la gestione di macchinari industriali di media portata.",
+      "In grado di controllare fino a 8 uscite, leggere 8 ingressi, gestire 6 sensori analogici e pilotare 2 convertitori DAC, con la possibilità di aggiungere fino a due schede di espansione slave con altrettante risorse (più 16 uscite per slave).",
+      "La scheda SControl può pilotare una macchina in autonomia o agire come sottoposto di un interfaccia superiore tramite un collegamento USB (convertitore USB-TTL), WiFi o Bluetooth."
+    ],
+    "image": "stiro.png",
+    "datasheet": "scontrol.pdf",
+    "tags": ["DC", "WiFi", "Bluetooth"]
+  },
+  {
+    "name": "Ghost Hunter",
+    "description": [
+        "La scheda \"Ghost Hunter\" è un sensore in grado di registrare la presenza di schiume emergenti da liquidi anche non conduttivi.",
+        "In base al livello percepito pilota due uscite, ma è predisposto anche un canale di comunicazione 485."
+    ],
+    "image": "gh.png",
+    "datasheet": "gh.pdf",
+    "tags": ["AC","DC", "sonda"]
+  }
 ]
