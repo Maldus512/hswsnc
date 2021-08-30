@@ -18,7 +18,7 @@ type alias ProductInfo =
     , description : List String
     , image : Maybe String
     , tags : List String
-    , datasheet : String
+    , datasheet : Maybe String
     }
 
 

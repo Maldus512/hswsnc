@@ -12,7 +12,6 @@ import Browser
 import Browser.Dom as Dom
 import Browser.Navigation as Navigation
 import Css exposing (..)
-import Debug
 import EmailData exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -137,7 +136,7 @@ routeParser =
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case first (Debug.log "msg, model" ( msg, model )) of
+    case msg of
         NoOp ->
             ( model, Cmd.none )
 

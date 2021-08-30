@@ -109,7 +109,7 @@ productDecoder =
         (JD.field "description" (JD.list JD.string))
         (JD.maybe (JD.field "image" JD.string))
         (JD.field "tags" (JD.list JD.string))
-        (JD.field "datasheet" JD.string)
+        (JD.maybe (JD.field "datasheet" JD.string))
 
 
 tagList tags =
@@ -138,7 +138,8 @@ productCard product =
                         List.map
                             (\d -> p [] [ text d ])
                             product.description
-                    , a [ href ("res/pdf/" ++ product.datasheet), class "discover", target "_blank" ] [ text "scheda tecnica" ]
+                    , Maybe.map (\datasheet -> a [ href ("res/pdf/" ++ datasheet), class "discover", target "_blank" ] [ text "scheda tecnica" ]) product.datasheet
+                        |> Maybe.withDefault (div [] [])
                     ]
             ]
         |> Card.view

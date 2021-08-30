@@ -70,5 +70,14 @@
     "image": "gh.png",
     "datasheet": "gh.pdf",
     "tags": ["AC","DC", "sonda"]
+  },
+  {
+    "name": "AutoLevel",
+    "description": [
+        "Scheda dotata di un semplice sensore capacitivo per la rilevazione di un liquido conduttivo (e.g. acqua)."
+    ],
+    "image": "autolivello.png",
+    "datasheet": "gh.pdf",
+    "tags": ["AC","DC", "sonda"]
   }
 ]
