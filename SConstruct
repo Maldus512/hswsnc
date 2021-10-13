@@ -4,6 +4,7 @@ ELMJS = "res/js/elm.js"
 MINJS = "res/js/minelm.js"
 CSS = "res/css/compiled.css"
 
+SASS = "./node_modules/.bin/sass"
 UGLIFYJS = './node_modules/.bin/uglifyjs'
 ELM = './node_modules/.bin/elm'
 
@@ -15,7 +16,8 @@ def PhonyTargets(
     depends,
     env=None,
 ):
-    if not env: env = DefaultEnvironment()
+    if not env:
+        env = DefaultEnvironment()
     t = env.Alias(target, depends, action)
     env.AlwaysBuild(t)
 
@@ -30,15 +32,20 @@ elmsrc += Glob("src/*.elm")
 
 env = Environment(**env_options)
 
+env.Command([ELM, UGLIFYJS], [], "npm install")
+
 final = env.Alias("all", [MINJS, CSS])
 env.Default(final)
 
-env.Command(ELMJS, elmsrc,
-            f"{ELM} make src/main.elm --optimize --output={ELMJS}")
+env.Command(ELMJS, elmsrc + [ELM],
+            f"{ELM} make src/Main.elm --optimize --output={ELMJS}")
 env.Command(
-    MINJS, ELMJS,
+    MINJS, [ELMJS, UGLIFYJS],
     f"{UGLIFYJS} {ELMJS} --compress 'pure_funcs=\"F2,F3,F4,F5,F6,F7,F8,F9,A2,A3,A4,A5,A6,A7,A8,A9\",pure_getters,keep_fargs=false,unsafe_comps,unsafe' | {UGLIFYJS} --mangle --output={MINJS}"
 )
 env.Command(
     CSS, scsssrc,
-    "sass scss/custom.scss:{} --no-source-map --style compressed".format(CSS))
+    f"{SASS} scss/custom.scss:{CSS} --no-source-map --style compressed")
+
+env.NoClean(ELM)
+env.NoClean(UGLIFYJS)

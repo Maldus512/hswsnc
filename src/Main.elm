@@ -1,6 +1,7 @@
 port module Main exposing (main)
 
 import Bootstrap.Accordion as Accordion
+--import Bootstrap.CDN as CDN
 import Bootstrap.Card as Card
 import Bootstrap.Card.Block as Block
 import Bootstrap.Carousel as Carousel
@@ -22,7 +23,7 @@ import Model exposing (..)
 import Task exposing (Task)
 import Tuple exposing (first)
 import Url exposing (Url)
-import Url.Parser as UrlParser exposing ((</>), Parser, s, top)
+import Url.Parser as UrlParser exposing ((</>), Parser)
 import Validate exposing (validate)
 import View.About exposing (..)
 import View.EmailForm exposing (..)
@@ -126,11 +127,11 @@ decode url =
 routeParser : Parser (Page -> a) a
 routeParser =
     UrlParser.oneOf
-        [ UrlParser.map Home top
-        , UrlParser.map Prodotti (s "prodotti")
-        , UrlParser.map FiltroProdotti (s "filtroprodotti")
-        , UrlParser.map Contatti (s "contatti")
-        , UrlParser.map Presentazioni (s "chisiamo")
+        [ UrlParser.map Home UrlParser.top
+        , UrlParser.map Prodotti (UrlParser.s "prodotti")
+        , UrlParser.map FiltroProdotti (UrlParser.s "filtroprodotti")
+        , UrlParser.map Contatti (UrlParser.s "contatti")
+        , UrlParser.map Presentazioni (UrlParser.s "chisiamo")
         ]
 
 
@@ -227,6 +228,7 @@ view model =
     { title = "HSW - Hardware & Software Design and Development"
     , body =
         [ div [ id "top" ] []
+        --CDN.stylesheet ,
         , menubar model
         , button [ id "back2top", class "icon-chevron-up", onClick ScrollTop ] []
         , case model.page of
